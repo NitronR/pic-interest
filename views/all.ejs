@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pic-Interest</title>
+    <% include head.ejs %>
+  </head>
+  <body>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+                    data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Pic-Interest</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">All</a></li>
+              <%if(user){%>
+                <li><a href="/my_pics">My Pics</a></li>
+              <%}%>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <%if(user){%>
+              <li><a href="#" id="sign-out">Sign out</a></li>
+              <%}else{%>
+              <li><a href="#" id="sign-in"><i class="fa fa-twitter"></i> Sign in</a></li>
+              <%}%>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div id="loader">
+      <div id="loader_a">
+        &nbsp;
+      </div>
+    </div>
+    <%if(!pics || pics.length==0){%>
+      <center>No pics added yet. Be the first one!!</center>
+      <div class="cont">
+    <div class="grid">
+    <%}else{%>
+      <div class="cont" id="cont">
+    <div id="grid" class="grid">
+  
+     <%pics.forEach(e=>{
+      %>
+      <div class="grid-item">
+        <a target="_blank" href="<%=e.url%>">
+          <div class="dimg" style="overflow:hidden;position:relative">
+            <img class="img" src="<%=e.url%>" style="width:100%;" onerror="this.className='';this.onerror=null;this.src='https://cdn.glitch.com/12ed5856-8290-40a1-9471-fab802586cc7%2Fno_image.png?1499520504544';"/></div></a><br>
+        <div class="well">
+          <%=e.desc%>
+        </div>
+        <img class="u_pic" src="<%=e.user_pic%>" uid="<%=e.uid%>">
+        <button uid="<%=e.uid%>" url="<%=e.url%>" style="float:right" class="like btn btn-default"><i class="fa fa-star<%=(e.likesq)?(""):("-o")%>"></i> <span class="likes"><%=e.likes%></span></button>
+    </div>
+    <%});}%>
+    </div>
+        
+      </div>
+    
+    <script src="/client.js"></script>
+    <script src="/all.js"></script>
+  </body>
+</html>

@@ -9,3 +9,5 @@ This is a clone of pinterest. Following features are supported :
     * Add images to his/her wall (If added image is broken, then it will be replaced by a placeholder).
     * Delete images from his/her wall.
     * View his/her wall in Pinterest style.
+    
+  https://pic-interest.glitch.me/
